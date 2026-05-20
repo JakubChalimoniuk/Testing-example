@@ -118,4 +118,22 @@ public class ContactIT extends AbstractIntegrationTest {
             assertThat(contactRepository.existsById(EXISTING_CONTACT_ID)).isFalse();
         }
     }
+    @Test
+    @Sql("/sql/CreateContactInit.sql")
+    void shouldDeleteContactsWhenPersonIsDeleted() throws Exception {
+        // given
+        final HttpDelete httpDelete = new HttpDelete("/api/persons/" + STUDENT_ID);
+
+        assertThat(contactRepository.existsById(EXISTING_CONTACT_ID)).isTrue();
+
+        // when
+        try (var client = HttpClients.createDefault()) {
+            var response = client.execute(getHttpHost(), httpDelete);
+
+            // then
+            assertThat(response.getStatusLine().getStatusCode()).isEqualTo(HttpStatus.OK.value());
+
+            assertThat(contactRepository.existsById(EXISTING_CONTACT_ID)).isFalse();
+        }
+    }
 }
