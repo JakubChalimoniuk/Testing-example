@@ -138,4 +138,3 @@ public class ContactIT extends AbstractIntegrationTest {
 //            assertThat(contactRepository.existsById(EXISTING_CONTACT_ID)).isFalse();
         }
     }
-}
