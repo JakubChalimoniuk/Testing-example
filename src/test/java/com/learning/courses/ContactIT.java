@@ -28,7 +28,7 @@ public class ContactIT extends AbstractIntegrationTest {
     private ContactRepository contactRepository;
 
     @Test
-    @Sql("/sql/createContactInit.sql")
+    @Sql("/sql/CreateContactInit.sql")
     void shouldSuccessfullyCreateNewContactForStudent() throws Exception {
         // given
         final HttpPost httpPost = new HttpPost("/api/contacts");
@@ -58,7 +58,7 @@ public class ContactIT extends AbstractIntegrationTest {
     }
 
     @Test
-    @Sql("/sql/createContactInit.sql")
+    @Sql("/sql/CreateContactInit.sql")
     void shouldFailToCreateContactIfAssignedPersonIsNotStudent() throws Exception {
         // given
         final HttpPost httpPost = new HttpPost("/api/contacts");
@@ -81,7 +81,7 @@ public class ContactIT extends AbstractIntegrationTest {
     }
 
     @Test
-    @Sql("/sql/createContactInit.sql")
+    @Sql("/sql/CreateContactInit.sql")
     void shouldReturnAllContactsForGivenStudentId() throws Exception {
         // given
         final HttpGet httpGet = new HttpGet("/api/contacts/student/" + STUDENT_ID);
@@ -102,7 +102,7 @@ public class ContactIT extends AbstractIntegrationTest {
     }
 
     @Test
-    @Sql("/sql/createContactInit.sql")
+    @Sql("/sql/CreateContactInit.sql")
     void shouldDeleteContactSuccessfully() throws Exception {
         // given
         final HttpDelete httpDelete = new HttpDelete("/api/contacts/" + EXISTING_CONTACT_ID);
